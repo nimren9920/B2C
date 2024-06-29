@@ -1,0 +1,28 @@
+{
+  "name": "b2c",
+  "version": "1.0.0",
+  "description": "Bath and Body B2C Project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimren9920/B2C.git"
+  },
+  "author": "Tarun Eluri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nimren9920/B2C/issues"
+  },
+  "homepage": "https://github.com/nimren9920/B2C#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7"
+  }
+}
