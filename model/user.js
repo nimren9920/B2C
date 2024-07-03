@@ -13,7 +13,7 @@ const Address = new Schema({
   },
   pincode: {
     type: String,
-  },
+  }
 });
 const user = new Schema({
   userFullName: {

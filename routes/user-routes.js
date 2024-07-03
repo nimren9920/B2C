@@ -2,9 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { getAllUser, userLogin, userSignUp } from '../controllers/user-controller.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.get("/",getAllUser);
-router.post("/signup",userSignUp);
-router.post("/login",userLogin);
-export default router;
+userRouter.get("/",getAllUser);
+userRouter.post("/signup",userSignUp);
+userRouter.post("/login",userLogin);
+export default userRouter;

@@ -55,6 +55,7 @@ export const userLogin =async (req,res,next)=>{
     }catch(err){
         return console.log(err);
     }
+    
     var validation = bcrypt.compareSync(userPassword,result.userPassword);
 
     if(validation){
