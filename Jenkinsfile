@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         NODE_ENV = 'development'
-        NPM_TOKEN = credentials('npm-token') // Assuming you have an NPM token stored in Jenkins credentials
     }
 
     stages {
