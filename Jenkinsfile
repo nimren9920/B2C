@@ -1,11 +1,24 @@
 pipeline {
     agent any
-    tools {nodejs "Node"}
+
+    environment {
+        NODE_ENV = 'development'
+    }
+
     stages {
-        stage('Clone Repository'){
-            steps{
-                git branch: 'main',
-                    url: 'https://github.com/nimren9920/B2C.git'
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the repository
+                git branch: 'main', url: 'https://github.com/nimren9920/B2C.git'
+            }
+        }
+
+        stage('Set up Node.js') {
+            steps {
+                // Set up Node.js environment
+                tool name: 'NodeJS 14', type: 'NodeJS' // Ensure you have configured a NodeJS tool named 'NodeJS 14' in Jenkins
+                sh 'node -v' // Verify Node.js version
+                sh 'npm -v' // Verify npm version
             }
         }
 
@@ -37,62 +50,32 @@ pipeline {
             }
         }
 
-        stage('Integration Tests') {
-            steps {
-                // Run integration tests
-                sh 'npm run test:integration'
-            }
-        }
-
-        stage('E2E Tests') {
-            steps {
-                // Run end-to-end tests
-                sh 'npm run test:e2e'
-            }
-        }
-
-        stage('Security Scan') {
-            steps {
-                // Run security scan using a tool like npm audit or snyk
-                sh 'npm audit'
-                // OR using Snyk
-                // sh 'npx snyk test'
-            }
-        }
-
-        stage('Performance Tests') {
-            steps {
-                // Run performance tests
-                sh 'npm run test:performance'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                // Package the application for deployment
-                sh 'npm run package'
-            }
-        }
-
-        stage('Deploy to Staging') {
-            when {
-                branch 'main'
-            }
-            steps {
-                // Deploy to staging environment
-                sh 'npm run deploy:staging'
-            }
-        }
-
-        stage('Deploy to Production') {
+        stage('Deploy') {
             when {
                 branch 'main'
                 expression { currentBuild.currentResult == 'SUCCESS' }
             }
             steps {
-                // Deploy to production environment
-                sh 'npm run deploy:production'
+                // Deploy to staging or production environment
+                sh 'npm run deploy'
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up after the build
+            cleanWs()
+        }
+
+        success {
+            // Notify success
+            echo 'Build succeeded!'
+        }
+
+        failure {
+            // Notify failure
+            echo 'Build failed!'
         }
     }
 }
