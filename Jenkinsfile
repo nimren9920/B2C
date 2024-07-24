@@ -1,15 +1,11 @@
 pipeline {
     agent any
-
-    environment {
-        NODE_ENV = 'development'
-    }
-
+    tools {nodejs "Node"}
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the code from the repository
-                git branch: 'main', url: 'https://github.com/nimren9920/B2C.git'
+        stage('Clone Repository'){
+            steps{
+                git branch: 'main',
+                    url: 'https://github.com/nimren9920/B2C.git'
             }
         }
 
