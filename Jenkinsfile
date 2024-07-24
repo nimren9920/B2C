@@ -16,7 +16,7 @@ pipeline {
         stage('Set up Node.js') {
             steps {
                 // Set up Node.js environment
-                tool name: 'NodeJS 14', type: 'NodeJS' // Ensure you have configured a NodeJS tool named 'NodeJS 14' in Jenkins
+                tool name: 'node', type: 'NodeJS' // Ensure you have configured a NodeJS tool named 'NodeJS 14' in Jenkins
                 sh 'node -v' // Verify Node.js version
                 sh 'npm -v' // Verify npm version
             }
