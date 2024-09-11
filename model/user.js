@@ -20,9 +20,11 @@ const user = new Schema({
     type: String,
     required: true,
   },
+  userGender:{
+    type: String
+  },
   userEmail: {
     type: String,
-    unique: true,
   },
   userPassword: {
     type: String,
@@ -40,6 +42,9 @@ const user = new Schema({
   userUpdatedAt: {
     type: Date,
   },
+  verified:{
+    type:Boolean
+  }
 });
 
 export default mongoose.model("User", user);
