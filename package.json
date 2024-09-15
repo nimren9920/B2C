@@ -20,7 +20,7 @@
   "homepage": "https://github.com/nimren9920/B2C#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "mongoose": "^8.4.4",
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.4",
